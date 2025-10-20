@@ -6,13 +6,13 @@ class CommentsController < ApplicationController
     if user_signed_in?
       comment.user = current_user
       comment.author_name = current_user.name
+    end
   end
 
   if @comment.save
       redirect_to movie_path(@movie), notice: "Comentário adicionado com sucesso."
-    else
+  else
       redirect_to movie_path(@movie), alert: "Erro ao adicionar comentário."
-    end
   end
   private
 

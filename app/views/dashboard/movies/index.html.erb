@@ -1,0 +1,41 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-4xl font-bold">Meus Filmes</h1>
+    <%= link_to "Novo Filme", new_dashboard_movie_path,
+                class: "bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700" %>
+  </div>
+
+  <div class="bg-white rounded-lg shadow">
+    <table class="w-full">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-6 py-3 text-left">Título</th>
+          <th class="px-6 py-3 text-left">Ano</th>
+          <th class="px-6 py-3 text-left">Diretor</th>
+          <th class="px-6 py-3 text-right">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @movies.each do |movie| %>
+          <tr class="border-t">
+            <td class="px-6 py-4"><%= movie.title %></td>
+            <td class="px-6 py-4"><%= movie.release_year %></td>
+            <td class="px-6 py-4"><%= movie.director %></td>
+            <td class="px-6 py-4 text-right">
+              <%= link_to "Editar", edit_dashboard_movie_path(movie),
+                          class: "text-blue-600 hover:underline mr-4" %>
+              <%= link_to "Excluir", dashboard_movie_path(movie),
+                          method: :delete,
+                          data: { confirm: "Tem certeza?" },
+                          class: "text-red-600 hover:underline" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-8">
+    <%= paginate @movies %>
+  </div>
+</div>
