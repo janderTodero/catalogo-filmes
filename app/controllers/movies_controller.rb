@@ -6,6 +6,6 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @comments = @movie.comments.order(created_at: :desc)
-    @comments = Comment.new
+    @comment = Comment.new
   end
 end
