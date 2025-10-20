@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+user = User.create!(
+  email: 'teste@teste.com',
+  password: '123456',
+  name: 'Usuário Teste'
+)
+
+10.times do |i|
+  user.movies.create!(
+    title: "Filme #{i + 1}",
+    synopsis: "Sinopse do filme #{i + 1}",
+    release_year: 2020 + rand(0..4),
+    duration: 90 + rand(0..90),
+    director: "Diretor #{i + 1}"
+  )
+end
