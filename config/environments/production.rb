@@ -65,7 +65,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   address: "smtp.mailersend.net", # servidor SMTP do MailerSend
   port: 2525,                      # porta TLS
-  user_name: ENV["SMTP_USER"], # seu username SMTP
+  user_name: "jaquinharua10@gmail.com", # seu username SMTP
   password: ENV["SMTP_PASSWORD"],        # sua senha SMTP
   authentication: :plain,
   enable_starttls_auto: true
