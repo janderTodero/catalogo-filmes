@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   authenticate :user do
     namespace :dashboard do
-      resources :movies
+      resources :movies, except: [ :show ]
+      resource :profile, only: [ :edit, :update ]
     end
   end
-  devise_for :users
 
   root "movies#index"
 

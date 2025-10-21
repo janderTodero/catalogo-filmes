@@ -21,13 +21,15 @@
             <td class="px-6 py-4"><%= movie.title %></td>
             <td class="px-6 py-4"><%= movie.release_year %></td>
             <td class="px-6 py-4"><%= movie.director %></td>
-            <td class="px-6 py-4 text-right">
+            <td class="px-6 py-4 text-right flex justify-end space-x-2">
               <%= link_to "Editar", edit_dashboard_movie_path(movie),
-                          class: "text-blue-600 hover:underline mr-4" %>
-              <%= link_to "Excluir", dashboard_movie_path(movie),
-                          method: :delete,
-                          data: { confirm: "Tem certeza?" },
-                          class: "text-red-600 hover:underline" %>
+                          class: "text-blue-600 hover:underline" %>
+              
+              <%= button_to "Excluir",
+                            dashboard_movie_path(movie),
+                            method: :delete,
+                            data: { confirm: "Tem certeza que deseja excluir este filme?" },
+                            class: "text-red-600 hover:underline bg-transparent border-none cursor-pointer" %>
             </td>
           </tr>
         <% end %>
