@@ -60,19 +60,20 @@ Rails.application.configure do
 
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  user_name: 'apikey', # literal mesmo
-  password: ENV['SENDGRID_API_KEY'],
-  domain: 'catalogo-filmes-tej3.onrender.com',
-  address: 'smtp.sendgrid.net',
-  port: 587,
+  address: "smtp.mailersend.net", # servidor SMTP do MailerSend
+  port: 587,                      # porta TLS
+  user_name: ENV["SMTP_USER"], # seu username SMTP
+  password: ENV["SMTP_PASSWORD"],        # sua senha SMTP
   authentication: :plain,
   enable_starttls_auto: true
 }
 
-config.action_mailer.default_url_options = { 
-  host: 'catalogo-filmes-tej3.onrender.com', 
-  protocol: 'https' 
+  config.action_mailer.default_url_options = {
+  host: "catalogo-filmes-tej3.onrender.com",
+  protocol: "https"
 }
 
 config.action_mailer.perform_deliveries = true
