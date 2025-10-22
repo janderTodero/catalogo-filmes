@@ -18,8 +18,8 @@ class Movie < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   scope :by_category, ->(category_name) {
-    joins(:categories).where(categories: { name: category_name }) if category_name.present?
-  }
+  joins(:categories).where("categories.name ILIKE ?", category_name) if category_name.present?
+}
 
   scope :by_year, ->(year) {
     where(release_year: year) if year.present?
