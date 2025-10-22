@@ -3,6 +3,8 @@ class Movie < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :comments, dependent: :destroy
 
+  acts_as_taggable_on :tags
+
   validates :title, presence: true
   validates :synopsis, presence: true
   validates :release_year, presence: true,
@@ -26,4 +28,12 @@ class Movie < ApplicationRecord
   scope :by_director, ->(director_name) {
     where("director ILIKE ?", "%#{director_name}%") if director_name.present?
   }
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[id title director release_year duration synopsis user_id created_at updated_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[categories user]
+  end
 end

@@ -45,7 +45,7 @@ config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
 # Adicione esta linha:
 LetterOpener.configure do |config|
-  config.location = Rails.root.join('tmp', 'letter_opener')
+  config.location = Rails.root.join("tmp", "letter_opener")
 end
 
   # Print deprecation notices to the Rails logger.

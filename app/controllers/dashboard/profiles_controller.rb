@@ -9,7 +9,7 @@ class Dashboard::ProfilesController < ApplicationController
     @user = current_user
 
     if @user.update(user_params)
-      redirect_to edit_dashboard_profile_path, notice: 'Perfil atualizado com sucesso.'
+      redirect_to edit_dashboard_profile_path, notice: "Perfil atualizado com sucesso."
     else
       render :edit, status: :unprocessable_entity
     end
