@@ -1,9 +1,20 @@
+# Limpa o banco
 Movie.destroy_all
+Category.destroy_all
+User.destroy_all
 
-user = User.first || User.create!(name: "Jander", email: "jander@email.com", password: "123456")
+# Cria usuário
+user = User.create!(name: "Jander", email: "jander@email.com", password: "123456")
 
-categories = Category.all.index_by(&:name)
+# Cria categorias
+category_names = [
+  "Ação", "Comédia", "Drama", "Ficção Científica", "Terror", 
+  "Suspense", "Fantasia", "Aventura", "Romance", "Animação", "Crime"
+]
 
+categories = category_names.map { |name| Category.create!(name: name) }.index_by(&:name)
+
+# Cria filmes com categorias e tags
 movies = [
   {
     title: "Star Wars - Uma Nova Esperança",
@@ -98,7 +109,7 @@ movies = [
 ]
 
 movies.each do |movie_data|
-  movie = Movie.find_or_create_by!(
+  movie = Movie.create!(
     title: movie_data[:title],
     synopsis: movie_data[:synopsis],
     release_year: movie_data[:release_year],
@@ -108,8 +119,8 @@ movies.each do |movie_data|
   )
 
   movie.categories = movie_data[:category_names].map { |name| categories[name] }.compact
-  movie.save!
-
   movie.tag_list.add(*movie_data[:tags])
   movie.save!
 end
+
+puts "✅ Seed completo executado: #{Movie.count} filmes e #{Category.count} categorias criadas."
