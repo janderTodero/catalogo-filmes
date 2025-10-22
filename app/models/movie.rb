@@ -14,4 +14,16 @@ class Movie < ApplicationRecord
   validates :director, presence: true
 
   default_scope { order(created_at: :desc) }
+
+  scope :by_category, ->(category_name) {
+    joins(:categories).where(categories: { name: category_name }) if category_name.present?
+  }
+
+  scope :by_year, ->(year) {
+    where(release_year: year) if year.present?
+  }
+
+  scope :by_director, ->(director_name) {
+    where("director ILIKE ?", "%#{director_name}%") if director_name.present?
+  }
 end
