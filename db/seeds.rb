@@ -1,4 +1,5 @@
 # Pega o primeiro usuário ou cria um se não existir
+Movie.destroy_all
 user = User.first || User.create!(name: "Jander", email: "jander@email.com", password: "123456")
 
 # Transforma as categorias existentes em um hash para facilitar a associação
