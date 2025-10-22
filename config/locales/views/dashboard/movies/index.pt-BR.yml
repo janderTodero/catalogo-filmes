@@ -1,0 +1,5 @@
+pt-BR:
+  dashboard:
+    movies:
+      index:
+        new_movie: "Novo Filme"
