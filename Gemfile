@@ -21,8 +21,7 @@ gem "jbuilder"
 gem "devise"
 gem "kaminari"
 gem "kaminari-tailwind"
-gem "simple_tags"
-
+gem 'acts-as-taggable-on'
 
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]

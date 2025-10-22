@@ -7,11 +7,15 @@ class MoviesController < ApplicationController
 
     if params[:search].present?
     search = params[:search]
-    @movies = @movies.where(
-      "title ILIKE :s OR director ILIKE :s OR CAST(release_year AS TEXT) ILIKE :s",
-      s: "%#{search}%"
-    )
-  end
+    # Busca em título, diretor, release_year e tags
+    @movies = @movies
+      .left_joins(:tags) # faz join com tags
+      .where(
+        "movies.title ILIKE :s OR movies.director ILIKE :s OR CAST(movies.release_year AS TEXT) ILIKE :s OR tags.name ILIKE :s",
+        s: "%#{search}%"
+      )
+      .distinct # evita duplicados por causa do join
+    end
   end
 
   def show
@@ -19,4 +23,5 @@ class MoviesController < ApplicationController
     @comments = @movie.comments.order(created_at: :desc)
     @comment = Comment.new
   end
+
 end

@@ -1,10 +1,8 @@
-# Pega o primeiro usuário ou cria um se não existir
 Movie.destroy_all
+
 user = User.first || User.create!(name: "Jander", email: "jander@email.com", password: "123456")
 
-# Transforma as categorias existentes em um hash para facilitar a associação
 categories = Category.all.index_by(&:name)
-# Exemplo: {"Ação"=>#<Category id:1,...>, "Comédia"=>#<Category id:2,...>}
 
 movies = [
   {
@@ -13,7 +11,8 @@ movies = [
     release_year: 1977,
     duration: 121,
     director: "George Lucas",
-    category_names: [ "Aventura", "Ficção Científica", "Fantasia" ]
+    category_names: ["Aventura", "Ficção Científica", "Fantasia"],
+    tags: ["jedi", "espacial", "épico"]
   },
   {
     title: "O Senhor dos Anéis: A Sociedade do Anel",
@@ -21,7 +20,8 @@ movies = [
     release_year: 2001,
     duration: 178,
     director: "Peter Jackson",
-    category_names: [ "Aventura", "Fantasia" ]
+    category_names: ["Aventura", "Fantasia"],
+    tags: ["anel", "épico", "fantasia"]
   },
   {
     title: "Titanic",
@@ -29,7 +29,8 @@ movies = [
     release_year: 1997,
     duration: 195,
     director: "James Cameron",
-    category_names: [ "Drama", "Romance" ]
+    category_names: ["Drama", "Romance"],
+    tags: ["navio", "romance", "trágico"]
   },
   {
     title: "Interestelar",
@@ -37,7 +38,8 @@ movies = [
     release_year: 2014,
     duration: 169,
     director: "Christopher Nolan",
-    category_names: [ "Ficção Científica", "Drama" ]
+    category_names: ["Ficção Científica", "Drama"],
+    tags: ["espaço", "buraco de minhoca", "humanidade"]
   },
   {
     title: "O Poderoso Chefão",
@@ -45,7 +47,8 @@ movies = [
     release_year: 1972,
     duration: 175,
     director: "Francis Ford Coppola",
-    category_names: [ "Crime", "Drama" ]
+    category_names: ["Crime", "Drama"],
+    tags: ["máfia", "família", "crime"]
   },
   {
     title: "Homem de Ferro",
@@ -53,7 +56,8 @@ movies = [
     release_year: 2008,
     duration: 126,
     director: "Jon Favreau",
-    category_names: [ "Ação", "Ficção Científica" ]
+    category_names: ["Ação", "Ficção Científica"],
+    tags: ["herói", "armadura", "tecnologia"]
   },
   {
     title: "Vingadores: Ultimato",
@@ -61,7 +65,8 @@ movies = [
     release_year: 2019,
     duration: 181,
     director: "Anthony e Joe Russo",
-    category_names: [ "Ação", "Aventura", "Ficção Científica" ]
+    category_names: ["Ação", "Aventura", "Ficção Científica"],
+    tags: ["heróis", "universo", "thanos"]
   },
   {
     title: "Coringa",
@@ -69,7 +74,8 @@ movies = [
     release_year: 2019,
     duration: 122,
     director: "Todd Phillips",
-    category_names: [ "Drama", "Crime" ]
+    category_names: ["Drama", "Crime"],
+    tags: ["vilão", "psicopata", "comédia"]
   },
   {
     title: "Toy Story",
@@ -77,7 +83,8 @@ movies = [
     release_year: 1995,
     duration: 81,
     director: "John Lasseter",
-    category_names: [ "Animação", "Comédia", "Aventura" ]
+    category_names: ["Animação", "Comédia", "Aventura"],
+    tags: ["brinquedos", "amigos", "aventura"]
   },
   {
     title: "Invocação do Mal",
@@ -85,7 +92,8 @@ movies = [
     release_year: 2013,
     duration: 112,
     director: "James Wan",
-    category_names: [ "Terror", "Suspense" ]
+    category_names: ["Terror", "Suspense"],
+    tags: ["fantasma", "investigação", "terror"]
   }
 ]
 
@@ -99,7 +107,9 @@ movies.each do |movie_data|
     user: user
   )
 
-  # associa categorias já existentes
   movie.categories = movie_data[:category_names].map { |name| categories[name] }.compact
+  movie.save!
+
+  movie.tag_list.add(*movie_data[:tags])
   movie.save!
 end
