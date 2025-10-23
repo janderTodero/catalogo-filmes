@@ -1,43 +1,38 @@
-<div class="container mx-auto px-4 py-8">
-  <div class="flex justify-between items-center mb-8">
-    <h1 class="text-4xl font-bold">Meus Filmes</h1>
-    <%= link_to t(".new_movie"), new_dashboard_movie_path,
-                class: "bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700" %>
+<div class="container mx-auto px-6 py-10">
+  <!-- Cabeçalho -->
+  <div class="flex flex-col sm:flex-row justify-between items-center mb-10 gap-4">
+    <h1 class="text-4xl font-bold text-gray-800"><%= t('app.my_movies') %></h1>
+    <%= link_to t('app.new_movie'), new_dashboard_movie_path,
+                class: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow transition duration-200" %>
   </div>
 
-  <div class="bg-white rounded-lg shadow">
-    <table class="w-full">
-      <thead class="bg-gray-100">
-        <tr>
-          <th class="px-6 py-3 text-left">Título</th>
-          <th class="px-6 py-3 text-left">Ano</th>
-          <th class="px-6 py-3 text-left">Diretor</th>
-          <th class="px-6 py-3 text-right">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @movies.each do |movie| %>
-          <tr class="border-t">
-            <td class="px-6 py-4"><%= movie.title %></td>
-            <td class="px-6 py-4"><%= movie.release_year %></td>
-            <td class="px-6 py-4"><%= movie.director %></td>
-            <td class="px-6 py-4 text-right flex justify-end space-x-2">
-              <%= link_to "Editar", edit_dashboard_movie_path(movie),
-                          class: "text-blue-600 hover:underline" %>
-              
-              <%= button_to "Excluir",
-                            dashboard_movie_path(movie),
-                            method: :delete,
-                            data: { confirm: "Tem certeza que deseja excluir este filme?" },
-                            class: "text-red-600 hover:underline bg-transparent border-none cursor-pointer" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <!-- Filtros -->
+  <div class="bg-white shadow-md rounded-lg p-6 mb-10">
+    <%= form_with url: dashboard_movies_path, method: :get, local: true, class: "flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center" do %>
 
-  <div class="mt-8">
-    <%= paginate @movies %>
+      <!-- Categoria -->
+      <%= select_tag :category, options_from_collection_for_select(Category.all, :name, :name, params[:category]),
+          include_blank: t('app.category'),
+          class: "border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-auto focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
+
+      <!-- Ano -->
+      <%= text_field_tag :release_year, params[:release_year],
+          placeholder: t('app.year'),
+          class: "border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-auto focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
+
+      <!-- Diretor -->
+      <%= text_field_tag :director, params[:director],
+          placeholder: t('app.director'),
+          class: "border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-auto focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
+
+      <!-- Pesquisa -->
+      <%= text_field_tag :search, params[:search],
+          placeholder: t('app.search_placeholder'),
+          class: "border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-1/3 focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
+
+      <!-- Botão Filtrar -->
+      <%= submit_tag t('app.filter'),
+          class: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow transition duration-200 w-full sm:w-auto" %>
+    <% end %>
   </div>
 </div>

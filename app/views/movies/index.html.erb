@@ -1,25 +1,28 @@
 <div class="container mx-auto px-4 py-12 bg-gray-50 min-h-screen">
   <h1 class="text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-800">
-    Catálogo de Filmes
+    <%= t('movies.catalog_title') %>
   </h1>
 
   <!-- Filtros -->
   <div class="mb-8 flex flex-wrap justify-center gap-4">
     <%= form_with url: movies_path, method: :get, local: true, class: "flex flex-wrap gap-2 items-center justify-center" do %>
       <div>
-        <%= select_tag :category, options_from_collection_for_select(Category.all, :name, :name, params[:category]), include_blank: "Categoria", class: "mt-1 block w-40 bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-700 text-sm focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
+        <%= select_tag :category, 
+              options_from_collection_for_select(Category.all, :name, :name, params[:category]), 
+              include_blank: t('movies.filters.category'), 
+              class: "mt-1 block w-40 bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-700 text-sm focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
       </div>
 
       <div>
-        <%= number_field_tag :year, params[:year], placeholder: "Ano", class: "mt-1 block w-20 bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-700 text-sm focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
+        <%= number_field_tag :year, params[:year], placeholder: t('movies.filters.year'), class: "mt-1 block w-20 bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-700 text-sm focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
       </div>
 
       <div>
-        <%= text_field_tag :director, params[:director], placeholder: "Diretor", class: "mt-1 block w-44 bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-700 text-sm focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
+        <%= text_field_tag :director, params[:director], placeholder: t('movies.filters.director'), class: "mt-1 block w-44 bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-700 text-sm focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
       </div>
 
       <div>
-        <%= submit_tag "Filtrar", class: "mt-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors duration-200" %>
+        <%= submit_tag t('movies.filters.submit'), class: "mt-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors duration-200" %>
       </div>
     <% end %>
   </div>
@@ -33,7 +36,7 @@
             <%= image_tag movie.cover_image.variant(resize_to_fill: [300, 400]), class: "w-full h-[400px] object-cover" %>
           <% else %>
             <div class="w-full h-[400px] bg-gray-200 flex items-center justify-center text-gray-400">
-              Sem imagem
+              <%= t('movies.no_image') %>
             </div>
           <% end %>
 
@@ -44,9 +47,9 @@
 
           <div class="absolute inset-0 bg-black bg-opacity-10 text-white p-4 flex flex-col justify-center items-start opacity-0 group-hover:opacity-80 transition-opacity duration-300">
             <h2 class="text-xl font-bold mb-2"><%= movie.title %></h2>
-            <p class="text-sm mb-2"><%= movie.release_year %> • <%= movie.duration %> min</p>
+            <p class="text-sm mb-2"><%= movie.release_year %> • <%= movie.duration %> <%= t('movies.duration_minutes') %></p>
             <p class="text-sm mb-4"><%= truncate(movie.synopsis, length: 80) %></p>
-            <span class="text-yellow-500 px-3 py-1 rounded">Ver detalhes...</span>
+            <span class="text-yellow-500 px-3 py-1 rounded"><%= t('movies.view_details') %></span>
           </div>
         <% end %>
       <% end %>
@@ -85,6 +88,6 @@
     </div>
 
   <% else %>
-    <p class="text-center text-gray-500 text-lg mt-12">Nenhum filme encontrado.</p>
+    <p class="text-center text-gray-500 text-lg mt-12"><%= t('movies.no_movies_found') %></p>
   <% end %>
 </div>

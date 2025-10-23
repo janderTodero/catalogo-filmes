@@ -35,6 +35,22 @@
       <% end %>
     </div>
   </div>
+
+  <div class="absolute top-4 right-6">
+  <div class="flex items-center space-x-1 bg-gray-200 rounded-full p-1 w-28">
+    <!-- Indicador que se move -->
+    <div class="bg-white w-12 h-6 rounded-full shadow-md transform transition-transform duration-300"
+         style="transform: translateX(<%= I18n.locale == :en ? '100%' : '0%' %>);">
+    </div>
+
+    <%= link_to "PT", url_for(locale: :'pt-BR'),
+                class: "absolute w-1/2 h-6 left-0 top-0 text-xs font-bold flex items-center justify-center cursor-pointer #{I18n.locale == :'pt-BR' ? 'text-blue-600' : 'text-gray-600'}" %>
+
+    <%= link_to "EN", url_for(locale: :en),
+                class: "absolute w-1/2 h-6 right-0 top-0 text-xs font-bold flex items-center justify-center cursor-pointer #{I18n.locale == :en ? 'text-blue-600' : 'text-gray-600'}" %>
+  </div>
+</div>
+
 </nav>
     
     <% if notice %>

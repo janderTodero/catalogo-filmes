@@ -1,0 +1,20 @@
+pt-BR:
+  movies:
+    catalog_title: "Catálogo de Filmes"
+    no_image: "Sem imagem"
+    duration_minutes: "min"
+    view_details: "Ver detalhes..."
+    no_movies_found: "Nenhum filme encontrado."
+    filters:
+      category: "Categoria"
+      year: "Ano"
+      director: "Diretor"
+      submit: "Filtrar"
+  app:
+    my_movies: "Meus Filmes"
+    new_movie: "Novo Filme"
+    category: "Categoria"
+    year: "Ano"
+    director: "Diretor"
+    search_placeholder: "Buscar por título..."
+    filter: "Filtrar"
