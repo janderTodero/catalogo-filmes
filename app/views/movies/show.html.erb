@@ -7,6 +7,10 @@
       <span><%= @movie.duration %> minutos</span> • 
       <span>Diretor: <%= @movie.director %></span>
     </div>
+
+    <% if @movie.cover_image.attached? %>
+      <%= image_tag @movie.cover_image.variant(resize_to_limit: [500, 700]), class: "rounded mb-4" %>
+    <% end %>
     
 
     <% if @movie.categories.any? %>

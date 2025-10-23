@@ -56,6 +56,16 @@
 </div>
 </div>
 
+<div>
+  <%= f.label :cover_image, "Capa do Filme", class: "block text-gray-700 mb-2" %>
+  <%= f.file_field :cover_image, class: "w-full border rounded px-3 py-2" %>
+
+  <% if f.object.cover_image.attached? %>
+    <p class="mt-2">Imagem atual:</p>
+    <%= image_tag f.object.cover_image.variant(resize_to_limit: [300, 400]), class: "mt-2 rounded" %>
+  <% end %>
+</div>
+
 
   
   <div class="flex gap-4">

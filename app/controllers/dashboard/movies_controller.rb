@@ -50,6 +50,6 @@ class Dashboard::MoviesController < ApplicationController
   end
 
   def movie_params
-    params.require(:movie).permit(:title, :synopsis, :release_year, :duration, :director, :tag_list, category_ids: [])
+    params.require(:movie).permit(:title, :synopsis, :release_year, :duration, :director, :tag_list, :cover_image, category_ids: [])
   end
 end
