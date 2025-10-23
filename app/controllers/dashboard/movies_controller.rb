@@ -37,6 +37,44 @@ class Dashboard::MoviesController < ApplicationController
     redirect_to dashboard_movies_path, notice: "Filme excluído com sucesso!"
   end
 
+  def fetch_movie_data_ai
+  title = params[:title]
+  if title.blank?
+    return render json: { error: "Título do filme é obrigatório." }, status: :unprocessable_entity
+  end
+
+  begin
+    chat = RubyLLM.chat(provider: :gemini, model: "gemini-2.5-pro")
+    prompt = "Me retorne apenas um JSON com as seguintes informações sobre o filme: #{title}. sinopse, ano_de_lancamento, duracao(em minutos), diretor."
+    response = chat.ask(prompt)
+
+    json_text = if response.content.is_a?(String)
+                  response.content
+                else
+                  response.content.text
+                end
+
+    json_text.gsub!(/```json|```/, "")
+    movie_data = JSON.parse(json_text) rescue nil
+
+    if movie_data.nil?
+      render json: { error: "Não foi possível interpretar a resposta da IA." }, status: :unprocessable_entity
+    else
+      render json: {
+        success: true,
+        movie: {
+          synopsis: movie_data["sinopse"],
+          release_year: movie_data["ano_de_lancamento"],
+          duration: movie_data["tempo_de_duracao"] || movie_data["duracao"],
+          director: movie_data["diretor"]
+        }
+      }
+    end
+  rescue => e
+    render json: { error: "Erro ao se comunicar com o serviço de IA: #{e.message}" }, status: :internal_server_error
+  end
+end
+
   private
 
   def set_movie

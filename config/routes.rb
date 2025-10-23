@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   authenticate :user do
     namespace :dashboard do
-      resources :movies, except: [ :show ]
+      resources :movies, except: [ :show ] do
+        collection do
+          post :fetch_movie_data_ai
+        end
+      end
       resource :profile, only: [ :edit, :update ]
     end
   end
