@@ -5,6 +5,7 @@ class Dashboard::MoviesController < ApplicationController
 
   def index
     @movies = current_user.movies.page(params[:page]).per(10)
+    @import = Import.new
   end
 
   def new

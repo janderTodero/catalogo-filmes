@@ -19,8 +19,8 @@ class Movie < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   scope :by_category, ->(category_name) {
-  joins(:categories).where("categories.name ILIKE ?", category_name) if category_name.present?
-}
+    joins(:categories).where("categories.name ILIKE ?", category_name) if category_name.present?
+  }
 
   scope :by_year, ->(year) {
     where(release_year: year) if year.present?
@@ -30,11 +30,11 @@ class Movie < ApplicationRecord
     where("director ILIKE ?", "%#{director_name}%") if director_name.present?
   }
 
-  def self.ransackable_attributes(auth_object = nil)
-    %w[id title director release_year duration synopsis user_id created_at updated_at]
-  end
+  # def self.ransackable_attributes(auth_object = nil)
+  #   %w[id title director release_year duration synopsis user_id created_at updated_at]
+  # end
 
-  def self.ransackable_associations(auth_object = nil)
-    %w[categories user]
-  end
+  # def self.ransackable_associations(auth_object = nil)
+  #   %w[categories user]
+  # end
 end

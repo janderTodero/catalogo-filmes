@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   has_many :movies, dependent: :destroy
   has_many :comments
+  has_many :imports, dependent: :destroy
 end
