@@ -1,0 +1,19 @@
+<p>Olá <%= @import.user.name %>,</p>
+
+<p>Sua importação de filmes foi concluída!</p>
+
+<p><strong>Filmes importados com sucesso:</strong></p>
+<ul>
+  <% @successes.each do |title| %>
+    <li><%= title %></li>
+  <% end %>
+</ul>
+
+<% if @failures.any? %>
+  <p><strong>Filmes que não foram importados:</strong></p>
+  <ul>
+    <% @failures.each do |f| %>
+      <li>Linha <%= f[:row] %> - <%= f[:title] || "Sem título" %>: <%= f[:error] %></li>
+    <% end %>
+  </ul>
+<% end %>

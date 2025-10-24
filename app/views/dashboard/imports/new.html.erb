@@ -1,0 +1,12 @@
+<h1>Nova Importação de Filmes</h1>
+
+<%= form_with model: @import, url: dashboard_imports_path, local: true, html: { multipart: true } do |f| %>
+  <div>
+    <%= f.label :file, "Arquivo CSV" %><br>
+    <%= f.file_field :file %>
+  </div>
+
+  <div>
+    <%= f.submit "Importar" %>
+  </div>
+<% end %>
