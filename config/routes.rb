@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :imports, only: [:new, :create]
+      resources :imports, only: [:new, :create, :show]
       resource :profile, only: [:edit, :update]
     end
   end

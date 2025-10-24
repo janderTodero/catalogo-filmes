@@ -1,13 +1,19 @@
-<h1>Detalhes da Importação</h1>
+<h1>Importação</h1>
 
-<p>Status: <%= @import.status %></p>
-<p>Usuário: <%= @import.user.email %></p>
-<p>Arquivo: <%= @import.file.filename %></p>
+<%= turbo_stream_from @import %>
 
-<% if @import.status == "done" %>
-  <p>Importação concluída com sucesso!</p>
-<% elsif @import.status == "failed" %>
-  <p>Houve um erro na importação.</p>
-<% else %>
-  <p>Importação em andamento...</p>
-<% end %>
+<turbo-frame id="<%= dom_id(@import) %>">
+  <p>Status: <%= @import.status.capitalize %></p>
+
+  <% case @import.status %>
+  <% when "pending", "processing" %>
+    <p>⌛ Aguardando ou processando...</p>
+  <% when "done" %>
+    <p>✅ Concluído!</p>
+    <%= link_to "Ver filmes", dashboard_movies_path,
+            class: "btn btn-primary",
+            data: { turbo_frame: "_top" } %>
+  <% when "failed" %>
+    <p>❌ Falhou.</p>
+  <% end %>
+</turbo-frame>

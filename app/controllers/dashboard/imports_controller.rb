@@ -12,10 +12,14 @@ class Dashboard::ImportsController < ApplicationController
 
     if @import.save
       MoviesImportJob.perform_later(@import.id)
-      redirect_to dashboard_movies_path, notice: "Upload iniciado! Os filmes serão importados em breve."
+      redirect_to dashboard_import_path(@import), notice: "Upload iniciado! Os filmes serão importados em breve."
     else
       render :new, alert: "Erro ao enviar o arquivo."
     end
+  end
+
+  def show
+    @import = current_user.imports.find(params[:id])
   end
 
   private
