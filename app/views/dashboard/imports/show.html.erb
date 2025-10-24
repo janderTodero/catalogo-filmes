@@ -1,4 +1,4 @@
-<h1>Importação</h1>
+<h1>Importação de Filmes</h1>
 
 <%= turbo_stream_from @import %>
 
@@ -8,11 +8,18 @@
   <% case @import.status %>
   <% when "pending", "processing" %>
     <p>⌛ Aguardando ou processando...</p>
+
+    <!-- Atualiza a página a cada 5 segundos enquanto estiver processando -->
+    <script>
+      setTimeout(() => {
+        window.location.reload(); // recarrega a página automaticamente
+      }, 3000); // 5000ms = 5 segundos
+    </script>
+
   <% when "done" %>
     <p>✅ Concluído!</p>
-    <%= link_to "Ver filmes", dashboard_movies_path,
-            class: "btn btn-primary",
-            data: { turbo_frame: "_top" } %>
+    <%= link_to "Ver filmes", dashboard_movies_path, class: "btn btn-primary" %>
+
   <% when "failed" %>
     <p>❌ Falhou.</p>
   <% end %>
