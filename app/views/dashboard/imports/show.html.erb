@@ -25,7 +25,8 @@
             ✅ <%= t('imports.done') %>
           </p>
           <%= link_to t('imports.view_movies'), dashboard_movies_path, 
-                class: "bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded transition inline-block" %>
+            class: "bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded transition inline-block",
+            data: { turbo_frame: "_top" } %>
 
         <% when "failed" %>
           <p class="text-red-500 flex items-center gap-2">

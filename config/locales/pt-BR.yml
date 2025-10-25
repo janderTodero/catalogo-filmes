@@ -66,7 +66,7 @@ pt-BR:
     user: "Usuário"
     my_movies: "Meus Filmes"
     import_csv: "Importar CSV"
-    profile: "Perfil"
+    profile: "Editar Perfil"
     logout: "Sair"
     account: "Conta"
     login: "Entrar"
@@ -84,6 +84,22 @@ pt-BR:
     done: "Concluído!"
     failed: "Falhou."
     view_movies: "Ver filmes"
+  profile:
+    edit_profile: "Editar Perfil"
+    personal_info: "Informações Pessoais"
+    name: "Nome"
+    name_placeholder: "Digite seu nome"
+    email: "Email"
+    email_placeholder: "Digite seu email"
+    change_password: "Alterar Senha"
+    leave_blank_if_no_change: "Deixe em branco se não quiser alterar a senha"
+    new_password: "Nova Senha"
+    new_password_placeholder: "Digite a nova senha"
+    password_confirmation: "Confirme a Senha"
+    password_confirmation_placeholder: "Digite novamente a senha"
+    update_profile: "Atualizar Perfil"
+    cancel: "Cancelar"
+    updated_success: "Perfil atualizado com sucesso!"
   datetime:
     distance_in_words:
       half_a_minute: "meio minuto"
@@ -117,3 +133,43 @@ pt-BR:
       almost_x_years:
         one: "quase 1 ano"
         other: "quase %{count} anos"
+  devise:
+    sessions:
+      signed_in: "Login realizado com sucesso."
+      signed_out: "Logout realizado com sucesso."
+      title: "Bem-Vindo!"
+      email: "Email"
+      password: "Senha"
+      remember_me: "Lembrar-me"
+      submit: "Entrar"
+    passwords:
+      send_instructions: "Você receberá um email com instruções para redefinir sua senha em breve."
+      new:
+        title: "Esqueceu sua senha?"
+        email: "E-mail"
+        submit: "Enviar instruções para redefinir senha"
+        send_instructions: "Você receberá um email com instruções para redefinir sua senha em breve."
+    registrations:
+      signed_up: "Cadastro realizado com sucesso."
+      updated: "Perfil atualizado com sucesso."
+      updated_with_password: "Perfil atualizado com sucesso."
+      destroyed: "Conta removida com sucesso."
+    errors:
+      messages:
+        already_confirmed: "já está confirmado."
+        not_found: "não encontrado."
+        not_locked: "não está bloqueado."
+        must_be_confirmed: "deve ser confirmado."
+        password_blank: "não pode ficar em branco"
+        password_too_short: "é muito curto (mínimo %{count} caracteres)"
+        password_too_long: "é muito longo (máximo %{count} caracteres)"
+        password_confirmation: "não confere com a senha"
+    shared:
+      links:
+        sign_in: "Entrar"
+        sign_up: "Cadastre-se"
+        forgot_password: "Esqueceu sua senha?"
+        confirmation_instructions: "Não recebeu instruções de confirmação?"
+        unlock_instructions: "Não recebeu instruções de desbloqueio?"
+        sign_in_with: "Entrar com %{provider}"
+    

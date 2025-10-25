@@ -18,6 +18,10 @@ class Dashboard::ProfilesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    if params[:user][:password].blank?
+      params.require(:user).permit(:name, :email)
+    else
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
   end
 end
