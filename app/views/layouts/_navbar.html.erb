@@ -1,0 +1,106 @@
+<nav class="bg-black text-white shadow-lg relative">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-red-500">
+      <%= link_to t('navbar.brand'), root_path, class: 'hover:text-red-400' %>
+    </div>
+
+    <div class="flex gap-6 items-center">
+      <%= link_to t('navbar.home'), root_path,
+          class: "font-semibold hover:text-red-500 transition-colors duration-200" %>
+
+      <%= form_with url: movies_path, method: :get, local: true, class: "flex items-center gap-2" do %>
+        <%= text_field_tag :search, params[:search], placeholder: t('navbar.search_placeholder'),
+            class: "bg-white rounded-md px-3 py-1 text-gray-700 focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
+        <%= submit_tag t('navbar.search_button'),
+            class: "cursor-pointer bg-white text-red-500 px-3 py-1 rounded hover:bg-gray-100 transition-colors duration-200 text-sm" %>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <div class="relative">
+          <button 
+            id="user-menu-button"
+            onclick="toggleDropdown('user-menu', 'user-arrow')"
+            class="flex items-center cursor-pointer gap-2 font-semibold text-red_500 hover:text-red-400 focus:outline-none"
+          >
+            <%= current_user.name.presence || t('navbar.user') %>
+            <svg id="user-arrow" xmlns="http://www.w3.org/2000/svg"
+                 class="w-4 h-4 transform transition-transform duration-300"
+                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div 
+            id="user-menu"
+            class="hidden absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-lg z-50"
+          >
+            <%= link_to t('navbar.my_movies'), dashboard_movies_path,
+                class: 'block px-4 py-2 hover:bg-gray-100' %>
+
+            <%= link_to t('navbar.import_csv'), new_dashboard_import_path,
+                class: 'block px-4 py-2 hover:bg-gray-100' %>
+
+            <%= link_to t('navbar.profile'), edit_dashboard_profile_path,
+                class: 'block px-4 py-2 hover:bg-gray-100' %>
+
+            <%= button_to t('navbar.logout'), destroy_user_session_path, method: :delete,
+                class: 'block text-left w-full px-4 py-2 hover:bg-gray-100 cursor-pointer' %>
+          </div>
+        </div>
+      <% else %>
+        <div class="flex items-center gap-2">
+          <%= link_to t('navbar.login'), new_user_session_path,
+              class: "bg-white text-red-500 font-semibold px-4 py-1 rounded hover:bg-gray-100 transition-colors duration-200" %>
+
+          <%= link_to t('navbar.register'), new_user_registration_path,
+              class: "font-semibold hover:text-blue-200 transition-colors duration-200" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="absolute top-4 right-6">
+    <div class="flex items-center space-x-1 bg-gray-200 rounded-full p-1 w-28 relative">
+      <div class="bg-white w-12 h-6 rounded-full shadow-md transform transition-transform duration-300"
+           style="transform: translateX(<%= I18n.locale == :en ? '100%' : '0%' %>);">
+      </div>
+
+      <%= link_to "PT", url_for(locale: :'pt-BR'),
+          class: "absolute w-1/2 h-6 left-0 top-0 text-xs font-bold flex items-center justify-center cursor-pointer #{I18n.locale == :'pt-BR' ? 'text-red-600' : 'text-gray-600'}" %>
+
+      <%= link_to "EN", url_for(locale: :en),
+          class: "absolute w-1/2 h-6 right-0 top-0 text-xs font-bold flex items-center justify-center cursor-pointer #{I18n.locale == :en ? 'text-red-600' : 'text-gray-600'}" %>
+    </div>
+  </div>
+</nav>
+
+
+
+<script>
+  function toggleDropdown(menuId, arrowId) {
+    const menu = document.getElementById(menuId);
+    const arrow = document.getElementById(arrowId);
+
+    document.querySelectorAll('[id$="-menu"]').forEach(el => {
+      if (el.id !== menuId) el.classList.add('hidden');
+    });
+    document.querySelectorAll('[id$="-arrow"]').forEach(el => {
+      if (el.id !== arrowId) el.classList.remove('rotate-180');
+    });
+
+    menu.classList.toggle('hidden');
+    arrow.classList.toggle('rotate-180');
+  }
+
+  document.addEventListener('click', function (event) {
+    const userMenu = document.getElementById('user-menu');
+    const userButton = document.getElementById('user-menu-button');
+    const userArrow = document.getElementById('user-arrow');
+
+    if (userMenu && !userButton.contains(event.target) && !userMenu.contains(event.target)) {
+      userMenu.classList.add('hidden');
+      userArrow.classList.remove('rotate-180');
+    }
+  });
+</script>

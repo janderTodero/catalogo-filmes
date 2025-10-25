@@ -16,7 +16,7 @@ class Dashboard::MoviesController < ApplicationController
     @movie = current_user.movies.new(movie_params)
 
     if @movie.save
-      redirect_to dashboard_movies_path, notice: "Filme cadastrado com sucesso!"
+      redirect_to movie_path(@movie), notice: "Filme cadastrado com sucesso!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -51,9 +51,9 @@ class Dashboard::MoviesController < ApplicationController
 
     json_text = if response.content.is_a?(String)
                   response.content
-                else
+    else
                   response.content.text
-                end
+    end
 
     json_text.gsub!(/```json|```/, "")
     movie_data = JSON.parse(json_text) rescue nil

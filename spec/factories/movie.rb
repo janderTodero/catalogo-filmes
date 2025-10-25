@@ -6,6 +6,6 @@ FactoryBot.define do
     release_year { 2001 }
     duration { 120 }
     director { "Jane Doe" }
-    categories { [association(:category)] }
+    categories { [ association(:category) ] }
   end
 end

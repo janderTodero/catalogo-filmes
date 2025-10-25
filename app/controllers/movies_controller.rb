@@ -23,5 +23,4 @@ class MoviesController < ApplicationController
     @comments = @movie.comments.order(created_at: :desc)
     @comment = Comment.new
   end
-
 end

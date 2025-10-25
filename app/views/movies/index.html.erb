@@ -1,9 +1,5 @@
-<div class="container mx-auto px-4 py-12 bg-gray-50 min-h-screen">
-  <h1 class="text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-800">
-    <%= t('movies.catalog_title') %>
-  </h1>
-
-  <!-- Filtros -->
+<div class="container mx-auto px-4 py-12 bg-gray-900 text-white min-h-screen">
+  
   <div class="mb-8 flex flex-wrap justify-center gap-4">
     <%= form_with url: movies_path, method: :get, local: true, class: "flex flex-wrap gap-2 items-center justify-center" do %>
       <div>
@@ -22,7 +18,7 @@
       </div>
 
       <div>
-        <%= submit_tag t('movies.filters.submit'), class: "mt-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors duration-200" %>
+        <%= submit_tag t('movies.filters.submit'), class: "cursor-pointer mt-1 bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-400 transition-colors duration-200" %>
       </div>
     <% end %>
   </div>
@@ -30,17 +26,16 @@
   <% if @movies.any? %>
     <div class="flex flex-wrap justify-center gap-6">
       <% @movies.each do |movie| %>
-        <%= link_to movie_path(movie), class: "relative group block bg-white rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-2xl w-[300px] h-[440px]" do %>
+        <%= link_to movie_path(movie), class: "relative group block bg-white rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-2xl w-[340px] h-[500px]" do %>
 
           <% if movie.cover_image.attached? %>
-            <%= image_tag movie.cover_image.variant(resize_to_fill: [300, 400]), class: "w-full h-[400px] object-cover" %>
+            <%= image_tag movie.cover_image.variant(resize_to_fill: [340, 460]), class: "w-full h-[460px] object-cover" %>
           <% else %>
-            <div class="w-full h-[400px] bg-gray-200 flex items-center justify-center text-gray-400">
+            <div class="w-full h-[460px] bg-gray-200 flex items-center justify-center text-gray-400">
               <%= t('movies.no_image') %>
             </div>
           <% end %>
 
-          <!-- Título fora da imagem -->
           <div class="bg-gray-800 text-white px-3 py-2 text-center">
             <h2 class="text-base font-bold truncate"><%= movie.title %></h2>
           </div>
@@ -69,7 +64,7 @@
             <% next if page < 1 || page > @movies.total_pages %>
             <li>
               <% if page == @movies.current_page %>
-                <span class="px-4 py-2 rounded-full bg-blue-600 text-white font-semibold"><%= page %></span>
+                <span class="px-4 py-2 rounded-full bg-red-500 text-white font-semibold"><%= page %></span>
               <% else %>
                 <%= link_to page, movies_path(page: page, category: params[:category], year: params[:year], director: params[:director]),
                   class: "px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700" %>
@@ -91,3 +86,4 @@
     <p class="text-center text-gray-500 text-lg mt-12"><%= t('movies.no_movies_found') %></p>
   <% end %>
 </div>
+

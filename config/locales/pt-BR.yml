@@ -1,6 +1,5 @@
 pt-BR:
   movies:
-    catalog_title: "Catálogo de Filmes"
     no_image: "Sem imagem"
     duration_minutes: "min"
     view_details: "Ver detalhes..."
@@ -10,11 +9,64 @@ pt-BR:
       year: "Ano"
       director: "Diretor"
       submit: "Filtrar"
-  app:
-    my_movies: "Meus Filmes"
-    new_movie: "Novo Filme"
-    category: "Categoria"
-    year: "Ano"
+    no_image: "Sem imagem"
+    duration_minutes: "minutos"
     director: "Diretor"
+    categories: "Categorias"
+    tags: "Tags"
+    back: "Voltar"
+    comments: "Comentários"
+  comments:
+    your_name: "Seu nome"
+    content: "Comentário"
+    submit: "Adicionar comentário"
+    ago: "atrás"
+    edit: "Editar"
+    destroy: "Apagar"
+    confirm_destroy: "Tem certeza que deseja apagar este comentário?"
+  navbar:
+    brand: "CatálogoFilmes"
+    home: "Início"
     search_placeholder: "Buscar por título..."
-    filter: "Filtrar"
+    search_button: "Buscar"
+    user: "Usuário"
+    my_movies: "Meus Filmes"
+    import_csv: "Importar CSV"
+    profile: "Perfil"
+    logout: "Sair"
+    account: "Conta"
+    login: "Entrar"
+    register: "Cadastrar"
+  datetime:
+    distance_in_words:
+      half_a_minute: "meio minuto"
+      less_than_x_seconds:
+        one: "menos de 1 segundo"
+        other: "menos de %{count} segundos"
+      x_seconds:
+        one: "1 segundo"
+        other: "%{count} segundos"
+      less_than_x_minutes:
+        one: "menos de 1 minuto"
+        other: "menos de %{count} minutos"
+      x_minutes:
+        one: "1 minuto"
+        other: "%{count} minutos"
+      about_x_hours:
+        one: "cerca de 1 hora"
+        other: "cerca de %{count} horas"
+      x_days:
+        one: "1 dia"
+        other: "%{count} dias"
+      x_months:
+        one: "1 mês"
+        other: "%{count} meses"
+      about_x_years:
+        one: "cerca de 1 ano"
+        other: "cerca de %{count} anos"
+      over_x_years:
+        one: "mais de 1 ano"
+        other: "mais de %{count} anos"
+      almost_x_years:
+        one: "quase 1 ano"
+        other: "quase %{count} anos"
