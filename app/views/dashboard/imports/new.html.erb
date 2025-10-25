@@ -1,12 +1,39 @@
-<h1>Nova Importação de Filmes</h1>
+<div class="container mx-auto px-6 py-10 bg-gray-900 min-h-screen text-white">
+  <div class="bg-gray-800 shadow-md rounded-lg p-8 max-w-xl mx-auto">
+    <h1 class="text-3xl font-bold text-red-500 mb-6">
+      <%= t('imports.new_import') %>
+    </h1>
 
-<%= form_with model: @import, url: dashboard_imports_path, local: true, html: { multipart: true } do |f| %>
-  <div>
-    <%= f.label :file, "Arquivo CSV" %><br>
-    <%= f.file_field :file %>
-  </div>
+    <%= form_with model: @import, url: dashboard_imports_path, local: true, html: { multipart: true }, class: 'space-y-6' do |f| %>
+      <!-- Campo de upload -->
+      <div class="relative">
+        <%= f.label :file, t('imports.csv_file'), class: 'block text-gray-300 font-medium mb-2' %>
+        
+        <%= f.file_field :file, class: 'absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10' %>
+        
+        <div class="flex items-center justify-center gap-2 border border-gray-600 rounded px-4 py-2 bg-gray-900 text-gray-200 hover:bg-gray-800 cursor-pointer z-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v8m0-8l-3 3m3-3l3 3m-3-12v8" />
+          </svg>
+          <span><%= t('imports.select_csv') %></span>
+        </div>
+      </div>
 
-  <div>
-    <%= f.submit "Importar" %>
+      <!-- Botão de enviar -->
+      <div>
+        <%= f.submit t('imports.import'), class: 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded transition cursor-pointer w-full' %>
+      </div>
+    <% end %>
+
+    <!-- Exemplo de CSV -->
+    <div class="mt-8 bg-gray-700 rounded-lg p-4 border border-gray-600">
+      <h2 class="text-lg font-semibold text-red-500 mb-2"><%= t('imports.csv_example_title') %></h2>
+      <pre class="bg-gray-800 text-gray-200 p-4 rounded overflow-x-auto">
+titulo,sinopse,release_year,duration,director,categories,tags
+"Star Wars - Uma Nova Esperança","A princesa Leia é mantida refém pelo Império...",1977,121,"George Lucas","Ficção, Aventura","galáxia,espacial"
+"Matrix","Um hacker descobre a verdade sobre a realidade...",1999,136,"Lana Wachowski,Lilly Wachowski","Ação, Ficção","virtual,realidade"
+      </pre>
+      <p class="text-gray-300 mt-2 text-sm"><%= t('imports.csv_example_note') %></p>
+    </div>
   </div>
-<% end %>
+</div>

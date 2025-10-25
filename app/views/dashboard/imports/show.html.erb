@@ -1,25 +1,38 @@
-<h1>Importação de Filmes</h1>
+<div class="container mx-auto px-6 py-10 bg-gray-900 min-h-screen text-white">
+  <div class="bg-gray-800 shadow-md rounded-lg p-8 max-w-xl mx-auto space-y-6">
+    <h1 class="text-3xl font-bold text-red-500 mb-4"><%= t('imports.show_title') %></h1>
 
-<%= turbo_stream_from @import %>
+    <%= turbo_stream_from @import %>
 
-<turbo-frame id="<%= dom_id(@import) %>">
-  <p>Status: <%= @import.status.capitalize %></p>
+    <turbo-frame id="<%= dom_id(@import) %>">
+      <div class="space-y-4">
+        <p class="text-gray-300"><strong><%= t('imports.status') %>:</strong> <%= @import.status.capitalize %></p>
 
-  <% case @import.status %>
-  <% when "pending", "processing" %>
-    <p>⌛ Aguardando ou processando...</p>
+        <% case @import.status %>
+        <% when "pending", "processing" %>
+          <p class="text-yellow-400 flex items-center gap-2">
+            ⌛ <%= t('imports.processing') %>
+          </p>
 
-    <script>
-      setTimeout(() => {
-        window.location.reload(); // recarrega a página automaticamente
-      }, 3000); // 5000ms = 5 segundos
-    </script>
+          <script>
+            setTimeout(() => {
+              window.location.reload(); // recarrega a página automaticamente
+            }, 3000); // 3 segundos
+          </script>
 
-  <% when "done" %>
-    <p>✅ Concluído!</p>
-    <%= link_to "Ver filmes", dashboard_movies_path, class: "btn btn-primary" %>
+        <% when "done" %>
+          <p class="text-green-500 flex items-center gap-2">
+            ✅ <%= t('imports.done') %>
+          </p>
+          <%= link_to t('imports.view_movies'), dashboard_movies_path, 
+                class: "bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded transition inline-block" %>
 
-  <% when "failed" %>
-    <p>❌ Falhou.</p>
-  <% end %>
-</turbo-frame>
+        <% when "failed" %>
+          <p class="text-red-500 flex items-center gap-2">
+            ❌ <%= t('imports.failed') %>
+          </p>
+        <% end %>
+      </div>
+    </turbo-frame>
+  </div>
+</div>
