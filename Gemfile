@@ -28,6 +28,7 @@ gem "ruby_llm"
 gem "csv"
 gem "sidekiq"
 gem "ransack"
+gem "cloudinary"
 
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
