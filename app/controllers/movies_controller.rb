@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
       .distinct
     end
 
-    @movies = @movie.page(params[:page]).per(6)
+    @movies = @movies.page(params[:page]).per(6)
   end
 
   def show
