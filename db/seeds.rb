@@ -47,15 +47,6 @@ movies = [
     tags: [ "navio", "romance", "trágico" ]
   },
   {
-    title: "Interestelar",
-    synopsis: "Um grupo de astronautas viaja através de um buraco de minhoca em busca de um novo lar para a humanidade.",
-    release_year: 2014,
-    duration: 169,
-    director: "Christopher Nolan",
-    category_names: [ "Ficção Científica", "Drama" ],
-    tags: [ "espaço", "buraco de minhoca", "humanidade" ]
-  },
-  {
     title: "O Poderoso Chefão",
     synopsis: "A história da família Corleone, uma das mais poderosas máfias dos Estados Unidos.",
     release_year: 1972,
