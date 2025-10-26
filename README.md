@@ -207,7 +207,7 @@ bundle exec rspec spec/jobs/movies_import_job_spec.rb
     - Receber notificação por e-mail quando o processo de importação for concluído: `ImportMailer` e visualização via letter_opener
     - OBS: Sidekiq não está rodando em produção devido a não ter versão free
 
--Buscar e preencher os dados do cadastro do filme por IA
+- Buscar e preencher os dados do cadastro do filme por IA
     - Integração com LLM via `ruby_llm` (initializer lê GEMINI_API_KEY)
     - Preeche automaticamente os campos: sinopse, ano de lançamento, duração e diretor
     - Retorno de erros
