@@ -51,7 +51,7 @@ Rails.application.configure do
   config.cache_store = :solid_cache_store
 
   # Replace the default in-process and non-durable queuing backend for Active Job.
-  config.active_job.queue_adapter = :solid_queue
+  config.active_job.queue_adapter = :inline
   config.solid_queue.connects_to = { database: { writing: :queue } }
 
   config.active_storage.queues.analysis = :inline
@@ -68,10 +68,10 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address: "smtp.mailersend.net", # servidor SMTP do MailerSend
-  port: 2525,                      # porta TLS
-  user_name: ENV["SMTP_USER"], # seu username SMTP
-  password: ENV["SMTP_PASSWORD"],        # sua senha SMTP
+  address: "smtp.mailersend.net",
+  port: 2525,
+  user_name: ENV["SMTP_USER"],
+  password: ENV["SMTP_PASSWORD"], 
   authentication: :plain,
   enable_starttls_auto: true
 }
