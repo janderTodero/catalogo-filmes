@@ -6,15 +6,18 @@ User.destroy_all
 # Cria usuário
 user = User.create!(name: "Jander", email: "jander@email.com", password: "123456")
 
-# Cria categorias
 category_names = [
+
   "Ação", "Comédia", "Drama", "Ficção Científica", "Terror",
-  "Suspense", "Fantasia", "Aventura", "Romance", "Animação", "Crime"
+  "Suspense", "Fantasia", "Aventura", "Romance", "Animação", "Crime",
+  "Documentário", "Biografia", "Musical", "Western", "Guerra",
+  "Thriller", "Mistério", "Histórico", "Familiar", "Comédia Romântica",
+  "Super-heróis", "Anime", "Cult", "Indie", "Esportes"
 ]
 
 categories = category_names.map { |name| Category.create!(name: name) }.index_by(&:name)
 
-# Cria filmes com categorias e tags
+
 movies = [
   {
     title: "Star Wars - Uma Nova Esperança",
