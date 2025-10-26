@@ -12,7 +12,7 @@ category_names = [
   "Suspense", "Fantasia", "Aventura", "Romance", "Animação", "Crime",
   "Documentário", "Biografia", "Musical", "Western", "Guerra",
   "Thriller", "Mistério", "Histórico", "Familiar", "Comédia Romântica",
-  "Super-heróis", "Anime", "Cult", "Indie", "Esportes"
+  "Super-heróis", "Anime", "Cult", "Indie", "Esportes", "Policial"
 ]
 
 categories = category_names.map { |name| Category.create!(name: name) }.index_by(&:name)
