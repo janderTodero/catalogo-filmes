@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
     @movies = @movies.by_year(params[:year]) if params[:year].present?
     @movies = @movies.by_director(params[:director]) if params[:director].present?
 
-    @movies = Movie.page(params[:page]).per(6)
+    
     if params[:search].present?
     search = params[:search]
     @movies = @movies
@@ -17,6 +17,8 @@ class MoviesController < ApplicationController
       )
       .distinct
     end
+
+    @movies = Movie.page(params[:page]).per(6)
   end
 
   def show
