@@ -174,8 +174,8 @@ bundle exec rspec spec/jobs/movies_import_job_spec.rb
 
 ## Funcionalidades implementadas
 
-    # Área Pública
-    
+### Área Pública
+
 - Listagem de todos os filmes cadastrados, ordenados do mais novo para o mais antigo
 - Paginação da listagem com até seis filmes por página: Kaminari + kaminari-tailwind
 - Visualização dos detalhes de um filme: título, sinopse, ano de lançamento, duração e diretor
@@ -183,7 +183,7 @@ bundle exec rspec spec/jobs/movies_import_job_spec.rb
 - Comentários exibidos do mais recente para o mais antigo
 - Cadastro de novo usuário e recuperação de senha via email: Email enviado via MailerSend em produção
 
-    # Área Autenticada
+### Área Autenticada
 
 - Autenticação: Devise
 - Possibilidade do usuário fazer logout
@@ -192,7 +192,7 @@ bundle exec rspec spec/jobs/movies_import_job_spec.rb
 - Usuário autenticado pode comentar com seu nome automaticamente vinculado ao comentário
 - Possibilidade de editar perfil e alterar senha
 
-    # Opcionais
+### Opcionais
 
 - Categorias de filmes: cadastrar e atribuir uma ou mais categorias aos filmes
 - Busca de filmes por título, diretor e/ou ano de lançamento: Ransack
