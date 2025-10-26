@@ -19,19 +19,17 @@
         </div>
       </div>
 
-      <!-- Botão de enviar -->
       <div>
         <%= f.submit t('imports.import'), class: 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded transition cursor-pointer w-full' %>
       </div>
     <% end %>
 
-    <!-- Exemplo de CSV -->
     <div class="mt-8 bg-gray-700 rounded-lg p-4 border border-gray-600">
       <h2 class="text-lg font-semibold text-red-500 mb-2"><%= t('imports.csv_example_title') %></h2>
       <pre class="bg-gray-800 text-gray-200 p-4 rounded overflow-x-auto">
-titulo,sinopse,release_year,duration,director,categories,tags
-"Star Wars - Uma Nova Esperança","A princesa Leia é mantida refém pelo Império...",1977,121,"George Lucas","Ficção, Aventura","galáxia,espacial"
-"Matrix","Um hacker descobre a verdade sobre a realidade...",1999,136,"Lana Wachowski,Lilly Wachowski","Ação, Ficção","virtual,realidade"
+        titulo,sinopse,release_year,duration,director,categories,tags
+        "Star Wars - Uma Nova Esperança","A princesa Leia é mantida refém pelo Império...",1977,121,"George Lucas","Ficção, Aventura","galáxia,espacial"
+        "Matrix","Um hacker descobre a verdade sobre a realidade...",1999,136,"Lana Wachowski,Lilly Wachowski","Ação, Ficção","virtual,realidade"
       </pre>
       <p class="text-gray-300 mt-2 text-sm"><%= t('imports.csv_example_note') %></p>
     </div>

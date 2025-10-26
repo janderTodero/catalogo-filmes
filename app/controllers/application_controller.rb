@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    # Pega o locale da URL, converte em símbolo e só aplica se estiver nos disponíveis
     if params[:locale].present? && I18n.available_locales.include?(params[:locale].to_sym)
       I18n.locale = params[:locale].to_sym
     else
