@@ -55,6 +55,8 @@ Rails.application.configure do
   config.solid_queue.connects_to = { database: { writing: :queue } }
 
   config.active_storage.queues.analysis = :inline
+  config.active_storage.queues.purge    = :inline
+  config.active_storage.queues.mirror   = :inline
 
 
   # Ignore bad email addresses and do not raise email delivery errors.
