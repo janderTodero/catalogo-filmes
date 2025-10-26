@@ -61,7 +61,7 @@ pt-BR:
   navbar:
     brand: "CatálogoFilmes"
     home: "Início"
-    search_placeholder: "Buscar por título..."
+    search_placeholder: "Buscar filmes..."
     search_button: "Buscar"
     user: "Usuário"
     my_movies: "Meus Filmes"

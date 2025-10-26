@@ -71,7 +71,7 @@ Rails.application.configure do
   address: "smtp.mailersend.net",
   port: 2525,
   user_name: ENV["SMTP_USER"],
-  password: ENV["SMTP_PASSWORD"], 
+  password: ENV["SMTP_PASSWORD"],
   authentication: :plain,
   enable_starttls_auto: true
 }

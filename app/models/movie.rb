@@ -30,11 +30,12 @@ class Movie < ApplicationRecord
     where("director ILIKE ?", "%#{director_name}%") if director_name.present?
   }
 
-  # def self.ransackable_attributes(auth_object = nil)
-  #   %w[id title director release_year duration synopsis user_id created_at updated_at]
-  # end
+  def self.ransackable_attributes(auth_object = nil)
+    [ "title", "synopsis", "director", "release_year", "duration", "created_at", "updated_at" ]
+  end
 
-  # def self.ransackable_associations(auth_object = nil)
-  #   %w[categories user]
-  # end
+  # Se você quiser buscar em relacionamentos (genre, category, etc)
+  def self.ransackable_associations(auth_object = nil)
+    [ "genre", "category" ] # adicione seus relacionamentos aqui
+  end
 end

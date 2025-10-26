@@ -8,12 +8,18 @@
       <%= link_to t('navbar.home'), root_path,
           class: "font-semibold hover:text-red-500 transition-colors duration-200" %>
 
-      <%= form_with url: movies_path, method: :get, local: true, class: "flex items-center gap-2" do %>
-        <%= text_field_tag :search, params[:search], placeholder: t('navbar.search_placeholder'),
-            class: "bg-white rounded-md px-3 py-1 text-gray-700 focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
-        <%= submit_tag t('navbar.search_button'),
-            class: "cursor-pointer bg-white text-red-500 px-3 py-1 rounded hover:bg-gray-100 transition-colors duration-200 text-sm" %>
-      <% end %>
+      <%= search_form_for @q, 
+                    url: movies_path, 
+                    method: :get,
+                    html: { class: "flex items-center gap-2" } do |f| %>
+  
+  <%= f.search_field :title_or_synopsis_or_director_cont, 
+      placeholder: t('navbar.search_placeholder'),
+      class: "bg-white rounded-md px-3 py-1 text-gray-700 focus:ring-1 focus:ring-blue-400 focus:border-blue-400" %>
+  
+  <%= f.submit t('navbar.search_button'),
+      class: "cursor-pointer bg-white text-red-500 px-3 py-1 rounded hover:bg-gray-100 transition-colors duration-200 text-sm" %>
+<% end %>
 
       <% if user_signed_in? %>
         <div class="relative">

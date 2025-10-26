@@ -27,7 +27,7 @@ gem "mini_magick"
 gem "ruby_llm"
 gem "csv"
 gem "sidekiq"
-
+gem "ransack"
 
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
@@ -38,7 +38,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
-gem 'solid_queue'
+gem "solid_queue"
 gem "solid_cable"
 
 # Reduces boot times through caching; required in config/boot.rb

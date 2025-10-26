@@ -61,7 +61,7 @@ en:
   navbar:
     brand: "MovieCatalog"
     home: "Home"
-    search_placeholder: "Search by title..."
+    search_placeholder: "Search movies..."
     search_button: "Search"
     user: "User"
     my_movies: "My Movies"
