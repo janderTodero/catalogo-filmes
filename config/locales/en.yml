@@ -113,3 +113,23 @@ en:
         forgot_password: "Forgot your password?"
         sign_in: "Log in"
         resend_confirmation: "Resend confirmation instructions"
+    passwords:
+      send_instructions: "Soon you will receive an email with instructions to reset your password."
+      new:
+        title: "Forgot your password?"
+        email: "E-mail"
+        instruction: "Enter your email below and we will send you instructions to reset your password."
+        submit: "Send reset instructions"
+        send_instructions: "Soon you will receive an email with instructions to reset your password."
+    registrations:
+      new:
+        title: "Sign"
+        name: "Name"
+        name_placeholder: "Enter your name"
+        email: "Email"
+        email_placeholder: "Enter"
+        password: "Password"
+        password_placeholder: "Enter password"
+        password_confirmation: "Confirm Password"
+        password_confirmation_placeholder: "Re-enter password"
+        submit: "Create Account"

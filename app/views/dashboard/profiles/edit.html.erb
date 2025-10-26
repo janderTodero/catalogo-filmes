@@ -14,7 +14,6 @@
         </div>
       <% end %>
 
-      <!-- Seção: Informações do Perfil -->
       <div class="space-y-4">
         <h2 class="text-xl font-semibold text-gray-300 mb-2"><%= t('profile.personal_info') %></h2>
 
@@ -31,7 +30,6 @@
 
       <hr class="border-gray-700 my-6">
 
-      <!-- Seção: Alterar Senha -->
       <div class="space-y-4">
         <h2 class="text-xl font-semibold text-gray-300 mb-2"><%= t('profile.change_password') %></h2>
         <p class="text-gray-400 text-sm"><%= t('profile.leave_blank_if_no_change') %></p>
@@ -46,6 +44,12 @@
           <%= f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: t('profile.password_confirmation_placeholder'), class: 'w-full border border-gray-600 rounded px-3 py-2 bg-gray-900 text-white focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500' %>
         </div>
       </div>
+
+      <div>
+        <%= f.label :current_password, t('profile.current_password'), class: 'block text-gray-300 mb-2 font-medium' %>
+        <%= f.password_field :current_password, autocomplete: 'current-password', placeholder: t('profile.current_password_placeholder'), class: 'w-full border border-gray-600 rounded px-3 py-2 bg-gray-900 text-white focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500' %>
+      </div>
+
 
       <div class="flex gap-4 mt-6">
         <%= f.submit t('profile.update_profile'), class: 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded transition cursor-pointer' %>

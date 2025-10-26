@@ -8,20 +8,32 @@ class Dashboard::ProfilesController < ApplicationController
   def update
     @user = current_user
 
-    if @user.update(user_params)
-      redirect_to edit_dashboard_profile_path, notice: "Perfil atualizado com sucesso."
+    if changing_password?
+      if @user.update_with_password(user_params_with_password)
+        redirect_to edit_dashboard_profile_path, notice: "Perfil atualizado com sucesso."
+      else
+        render :edit, status: :unprocessable_entity
+      end
     else
-      render :edit, status: :unprocessable_entity
+      if @user.update(user_params_without_password)
+        redirect_to edit_dashboard_profile_path, notice: "Perfil atualizado com sucesso."
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
   private
 
-  def user_params
-    if params[:user][:password].blank?
-      params.require(:user).permit(:name, :email)
-    else
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
+  def changing_password?
+    params[:user][:password].present?
+  end
+
+  def user_params_with_password
+    params.require(:user).permit(:name, :email, :current_password, :password, :password_confirmation)
+  end
+
+  def user_params_without_password
+    params.require(:user).permit(:name, :email)
   end
 end
