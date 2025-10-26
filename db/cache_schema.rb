@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_24_161938) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_26_010117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -67,9 +67,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_24_161938) do
   create_table "imports", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "file"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "error"
+    t.json "imported_movies", default: []
+    t.integer "status", default: 0
     t.index ["user_id"], name: "index_imports_on_user_id"
   end
 
@@ -83,6 +85,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_24_161938) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_movies_on_user_id"
+  end
+
+  create_table "solid_queue_jobs", force: :cascade do |t|
+    t.string "queue_name", null: false
+    t.text "payload", null: false
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.datetime "run_at"
+    t.datetime "failed_at"
+    t.datetime "locked_at"
+    t.string "locked_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["locked_at"], name: "index_solid_queue_jobs_on_locked_at"
+    t.index ["queue_name"], name: "index_solid_queue_jobs_on_queue_name"
+    t.index ["run_at"], name: "index_solid_queue_jobs_on_run_at"
   end
 
   create_table "taggings", force: :cascade do |t|
