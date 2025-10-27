@@ -181,7 +181,7 @@ bundle exec rspec spec/jobs/movies_import_job_spec.rb
 - Visualização dos detalhes de um filme: título, sinopse, ano de lançamento, duração e diretor
 - Possibilidade de adicionar comentários anônimos, informando apenas um nome e o conteúdo do comentário
 - Comentários exibidos do mais recente para o mais antigo
-- Cadastro de novo usuário e recuperação de senha via email: Email enviado via MailerSend em produção (Porém o plano gratuito só oferece emails para teste, e só é possível enviar para o email de administrador: jaquinharua10@gmail.com, mas está configurado corretamente utilizando SMTP)
+- Cadastro de novo usuário e recuperação de senha via email: Email enviado via MailerSend em produção e Letter_Opener local. (O plano gratuito do MailerSend só oferece emails para teste, e só é possível enviar para o email de administrador: jaquinharua10@gmail.com, mas está configurado corretamente utilizando SMTP. O SendGrid a versão gratuita do render estava bloqueando as portas via SMTP)
 
 ### Área Autenticada
 
