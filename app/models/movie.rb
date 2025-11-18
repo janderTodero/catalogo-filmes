@@ -2,6 +2,7 @@ class Movie < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :categories
   has_many :comments, dependent: :destroy
+  has_many :ratings, dependent: :destroy
 
   acts_as_taggable_on :tags
   has_one_attached :cover_image
@@ -37,5 +38,13 @@ class Movie < ApplicationRecord
   # Se você quiser buscar em relacionamentos (genre, category, etc)
   def self.ransackable_associations(auth_object = nil)
     [ "genre", "category" ] # adicione seus relacionamentos aqui
+  end
+
+  def average_rating
+    ratings.average(:score)&.round(1) || 0
+  end
+
+  def rating_count
+    ratings.count
   end
 end

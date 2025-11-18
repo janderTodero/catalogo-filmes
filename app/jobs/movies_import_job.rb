@@ -8,7 +8,6 @@ class MoviesImportJob < ApplicationJob
     begin
       Rails.logger.info "Importação ##{import.id} iniciada pelo usuário #{import.user.email}"
 
-      # Atualiza status e envia email de início
       import.update!(status: :processing)
       ImportMailer.started(import).deliver_later
 
@@ -39,16 +38,14 @@ class MoviesImportJob < ApplicationJob
           processed += 1
           Rails.logger.info "Importação ##{import.id}: #{processed}/#{total_rows} filmes importados com sucesso"
         rescue => e
-          failures << { row: index + 2, title: row["title"], error: e.message } # +2 conta cabeçalho
+          failures << { row: index + 2, title: row["title"], error: e.message }
           Rails.logger.warn "Falha na importação da linha #{index + 2}: #{e.message}"
         end
       end
 
-      # Conclui a importação
       import.update!(status: :done)
       Rails.logger.info "Importação ##{import.id} concluída: #{successes.size} filmes importados, #{failures.size} falhas"
 
-      # Envia email de sucesso com relatório
       ImportMailer.completed(import, successes, failures).deliver_later
 
     rescue => e
